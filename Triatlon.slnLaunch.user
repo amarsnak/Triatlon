@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Triatlon\\Triatlon.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\Naloga4_Splet\\Naloga4_Splet\\Naloga4_Splet.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Naloga3_WPF\\Naloga3_WPF.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

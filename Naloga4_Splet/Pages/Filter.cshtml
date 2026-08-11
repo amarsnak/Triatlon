@@ -1,0 +1,101 @@
+@page
+@model Naloga4_Splet.Pages.FilterModel
+@{
+    ViewData["Title"] = "Filter rezultatov";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="fas fa-filter me-2 text-success"></i>Filtriranje rezultatov</h2>
+
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-sliders me-2"></i>Parametri filtra</div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Država</label>
+                    <input type="text" name="drzava" value="@Model.Drzava"
+                           class="form-control" placeholder="npr. AUS, SLO..." />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Kategorija</label>
+                    <input type="text" name="kategorija" value="@Model.Kategorija"
+                           class="form-control" placeholder="npr. M40, F30..." />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Min. starost</label>
+                    <input type="number" name="minStarost" value="@Model.MinStarost"
+                           class="form-control" placeholder="npr. 20" min="0" max="100" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Max. starost</label>
+                    <input type="number" name="maxStarost" value="@Model.MaxStarost"
+                           class="form-control" placeholder="npr. 50" min="0" max="100" />
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <a href="/Filter" class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Rezultati.Any())
+    {
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <span><i class="fas fa-list me-2"></i>Filtrirani rezultati</span>
+                <span class="badge bg-light text-dark">@Model.Rezultati.Count rezultatov</span>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 small">
+                        <thead>
+                            <tr>
+                                <th>Ime</th>
+                                <th>Priimek</th>
+                                <th>Država</th>
+                                <th>Starost</th>
+                                <th>Kategorija</th>
+                                <th>Uvrstitev</th>
+                                <th>Skupni čas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var r in Model.Rezultati)
+                            {
+                                <tr>
+                                    <td>@r.Ime</td>
+                                    <td>@r.Priimek</td>
+                                    <td><span class="badge bg-secondary">@r.Drzava</span></td>
+                                    <td>@(r.Starost?.ToString() ?? "—")</td>
+                                    <td>@(r.Kategorija ?? "—")</td>
+                                    <td>@(r.Uvrstitev?.ToString() ?? "—")</td>
+                                    <td><strong>@(r.CasSkupni ?? "—")</strong></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.IsFiltered)
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>Ni rezultatov za izbrane filtre.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-light border">
+            <i class="fas fa-filter me-2 text-success"></i>
+            Nastavi filtre zgoraj in klikni iskanje.
+        </div>
+    }
+</div>

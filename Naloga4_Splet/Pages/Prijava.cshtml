@@ -1,0 +1,41 @@
+@page
+@model Naloga4_Splet.Pages.PrijavaModel
+@{
+    ViewData["Title"] = "Prijava";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <i class="fas fa-sign-in-alt me-2"></i>Prijava
+                </div>
+                <div class="card-body p-4">
+                    @if (!string.IsNullOrEmpty(Model.Napaka))
+                    {
+                        <div class="alert alert-danger">@Model.Napaka</div>
+                    }
+                    <form method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Uporabniško ime</label>
+                            <input type="text" name="uporabniskoIme" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Geslo</label>
+                            <input type="password" name="geslo" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-sign-in-alt me-2"></i>Prijava
+                        </button>
+                    </form>
+                    <hr />
+                    <div class="text-center">
+                        <small>Nimate računa? <a href="/Registracija">Registracija</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

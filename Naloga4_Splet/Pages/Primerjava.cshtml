@@ -1,0 +1,103 @@
+@page
+@model Naloga4_Splet.Pages.PrimerjavaModel
+@{
+    ViewData["Title"] = "Primerjava tekmovalcev";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="fas fa-scale-balanced me-2 text-info"></i>Primerjava dveh tekmovalcev</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">ID Tekmovalca 1</label>
+                    <input type="number" name="id1" value="@Model.Id1"
+                           class="form-control" placeholder="npr. 1234" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">ID Tekmovalca 2</label>
+                    <input type="number" name="id2" value="@Model.Id2"
+                           class="form-control" placeholder="npr. 5678" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-info text-white w-100">
+                        <i class="fas fa-scale-balanced me-2"></i>Primerjaj
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.T1 != null && Model.T2 != null)
+    {
+        <div class="row g-4">
+            <!-- TEKMOVALEC 1 -->
+            <div class="col-md-5">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <i class="fas fa-user me-2"></i>@Model.T1.Ime @Model.T1.Priimek
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <tr><td>Država</td><td><span class="badge bg-secondary">@(Model.T1.Drzava ?? "—")</span></td></tr>
+                            <tr><td>Nastopi</td><td><strong>@Model.Stat1?.SteviloNastopov</strong></td></tr>
+                            <tr><td>Najboljši čas</td><td><strong class="text-success">@(Model.Stat1?.NajboljsiCas ?? "—")</strong></td></tr>
+                            <tr><td>Povprečni čas</td><td>@(Model.Stat1?.PovprecniCas ?? "—")</td></tr>
+                            <tr><td>Najboljše plavanje</td><td>@(Model.Stat1?.NajboljsiPlavanje ?? "—")</td></tr>
+                            <tr><td>Najboljše kolesarjenje</td><td>@(Model.Stat1?.NajboljsiKolesarjenje ?? "—")</td></tr>
+                            <tr><td>Najboljši tek</td><td>@(Model.Stat1?.NajboljsiTek ?? "—")</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VS -->
+            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <div class="display-4 fw-bold text-muted">VS</div>
+                    @if (Model.Stat1 != null && Model.Stat2 != null &&
+                         Model.Stat1.NajboljsiCas != null && Model.Stat2.NajboljsiCas != null)
+                    {
+                        var zmagovalec = string.Compare(Model.Stat1.NajboljsiCas, Model.Stat2.NajboljsiCas) <= 0
+                            ? $"{Model.T1.Ime} {Model.T1.Priimek}"
+                            : $"{Model.T2.Ime} {Model.T2.Priimek}";
+                        <div class="mt-3">
+                            <div class="badge bg-warning text-dark p-2">
+                                🏆 @zmagovalec
+                            </div>
+                            <div class="small text-muted mt-1">boljši čas</div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- TEKMOVALEC 2 -->
+            <div class="col-md-5">
+                <div class="card border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <i class="fas fa-user me-2"></i>@Model.T2.Ime @Model.T2.Priimek
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <tr><td>Država</td><td><span class="badge bg-secondary">@(Model.T2.Drzava ?? "—")</span></td></tr>
+                            <tr><td>Nastopi</td><td><strong>@Model.Stat2?.SteviloNastopov</strong></td></tr>
+                            <tr><td>Najboljši čas</td><td><strong class="text-success">@(Model.Stat2?.NajboljsiCas ?? "—")</strong></td></tr>
+                            <tr><td>Povprečni čas</td><td>@(Model.Stat2?.PovprecniCas ?? "—")</td></tr>
+                            <tr><td>Najboljše plavanje</td><td>@(Model.Stat2?.NajboljsiPlavanje ?? "—")</td></tr>
+                            <tr><td>Najboljše kolesarjenje</td><td>@(Model.Stat2?.NajboljsiKolesarjenje ?? "—")</td></tr>
+                            <tr><td>Najboljši tek</td><td>@(Model.Stat2?.NajboljsiTek ?? "—")</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.Id1.HasValue || Model.Id2.HasValue)
+    {
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Tekmovalec ni bil najden. Preveri ID-je.
+        </div>
+    }
+</div>

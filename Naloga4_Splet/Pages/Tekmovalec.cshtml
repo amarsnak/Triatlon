@@ -1,0 +1,157 @@
+@page
+@model Naloga4_Splet.Pages.TekmovalecModel
+@{
+    ViewData["Title"] = Model.Tekmovalec?.ImeInPriimek ?? "Tekmovalec";
+}
+
+<div class="container mt-4">
+    @if (Model.Tekmovalec == null)
+    {
+        <div class="alert alert-warning">Tekmovalec ne obstaja.</div>
+    }
+    else
+    {
+        <div class="row g-4">
+            <!-- PROFIL -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user me-2"></i>Profil tekmovalca
+                    </div>
+                    <div class="card-body text-center py-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                             style="width:80px;height:80px;font-size:2rem;">
+                            @(Model.Tekmovalec.Ime?.Substring(0,1))@(Model.Tekmovalec.Priimek?.Substring(0,1))
+                        </div>
+                        <h4>@Model.Tekmovalec.Ime @Model.Tekmovalec.Priimek</h4>
+                        <span class="badge bg-secondary mb-3">@(Model.Tekmovalec.Drzava ?? "—")</span>
+                        <table class="table table-sm text-start">
+                            <tr><td><i class="fas fa-birthday-cake me-2 text-primary"></i>Starost</td><td>@(Model.Tekmovalec.Starost?.ToString() ?? "—")</td></tr>
+                            <tr><td><i class="fas fa-map-marker-alt me-2 text-primary"></i>Kraj</td><td>@(Model.Tekmovalec.Kraj ?? "—")</td></tr>
+                            <tr><td><i class="fas fa-briefcase me-2 text-primary"></i>Poklic</td><td>@(Model.Tekmovalec.Poklic ?? "—")</td></tr>
+                        </table>
+                        <a href="/Primerjava?id1=@Model.Tekmovalec.Id" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-scale-balanced me-1"></i>Primerjaj
+                        </a>
+                    </div>
+                </div>
+
+                @if (Model.Statistika != null)
+                {
+                    <div class="card mt-3">
+                        <div class="card-header"><i class="fas fa-chart-bar me-2"></i>Statistika</div>
+                        <div class="card-body">
+                            <div class="row text-center g-2">
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-2">
+                                        <div class="fw-bold text-primary fs-4">@Model.Statistika.SteviloNastopov</div>
+                                        <small>Nastopov</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="bg-light rounded p-2">
+                                        <div class="fw-bold text-success">@(Model.Statistika.NajboljsiCas ?? "—")</div>
+                                        <small>Najboljši čas</small>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-light rounded p-2">
+                                        <div class="fw-bold text-info">@(Model.Statistika.PovprecniCas ?? "—")</div>
+                                        <small>Povprečni čas</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- REZULTATI + GRAF -->
+            <div class="col-md-8">
+                @if (Model.Rezultati.Any())
+                {
+                    <div class="card mb-4">
+                        <div class="card-header"><i class="fas fa-chart-line me-2"></i>Graf napredka skozi čas</div>
+                        <div class="card-body">
+                            <canvas id="napredekChart" height="120"></canvas>
+                        </div>
+                    </div>
+                }
+
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <span><i class="fas fa-medal me-2"></i>Rezultati tekmovanj</span>
+                        <span class="badge bg-light text-dark">@Model.Rezultati.Count nastopov</span>
+                    </div>
+                    <div class="card-body p-0">
+                        @if (Model.Rezultati.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0 small">
+                                    <thead>
+                                        <tr>
+                                            <th>Tekmovanje</th>
+                                            <th>Mesto</th>
+                                            <th>Plavanje</th>
+                                            <th>Kolesarjenje</th>
+                                            <th>Tek</th>
+                                            <th>Skupni čas</th>
+                                            <th>Točke</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var r in Model.Rezultati)
+                                        {
+                                            <tr>
+                                                <td>ID: @r.TekovanjeId</td>
+                                                <td>@(r.UvrstevSkupna?.ToString() ?? "—")</td>
+                                                <td>@(r.CasPlavanje?.ToString(@"hh\:mm\:ss") ?? "—")</td>
+                                                <td>@(r.CasKolesarjenje?.ToString(@"hh\:mm\:ss") ?? "—")</td>
+                                                <td>@(r.CasTek?.ToString(@"hh\:mm\:ss") ?? "—")</td>
+                                                <td><strong>@r.CasFinish</strong></td>
+                                                <td>@(r.Tocke?.ToString("F0") ?? "—")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="p-4 text-center text-muted">Ni rezultatov za tega tekmovalca.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+@if (Model.Rezultati.Any())
+{
+<script>
+const casovi = @Html.Raw(Model.GrafCasovi);
+const labels = @Html.Raw(Model.GrafLabels);
+new Chart(document.getElementById('napredekChart'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Skupni čas (minute)',
+            data: casovi,
+            borderColor: '#2E6DA4',
+            backgroundColor: 'rgba(46,109,164,0.1)',
+            tension: 0.3,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: false, title: { display: true, text: 'Minute' } } }
+    }
+});
+</script>
+}
+}

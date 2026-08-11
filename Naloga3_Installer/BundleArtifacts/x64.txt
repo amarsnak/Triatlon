@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Aleks\source\repos\Triatlon\Naloga3_Installer\bin\x64\Debug\Naloga3_Installer_1.0.5.0_x64_Debug.appx
+SymbolPackage=C:\Users\Aleks\source\repos\Triatlon\Naloga3_Installer\obj\x64\Debug\Symbols\Naloga3_Installer_1.0.5.0_x64_Debug.appxsym

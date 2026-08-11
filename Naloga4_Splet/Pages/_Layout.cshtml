@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — Triatlon</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #1A3A6B;
+            --secondary: #2E6DA4;
+            --accent: #4A9FD4;
+            --light: #F4F6F9;
+        }
+        body { background: var(--light); font-family: 'Segoe UI', sans-serif; }
+        .navbar { background: var(--primary) !important; }
+        .navbar-brand { font-weight: 700; font-size: 1.3rem; }
+        .nav-link { color: rgba(255,255,255,0.85) !important; }
+        .nav-link:hover, .nav-link.active { color: white !important; }
+        .card { border: none; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .card-header { background: var(--primary); color: white; border-radius: 12px 12px 0 0 !important; font-weight: 600; }
+        .btn-primary { background: var(--secondary); border-color: var(--secondary); }
+        .btn-primary:hover { background: var(--primary); border-color: var(--primary); }
+        .stat-card { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .stat-card .number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); }
+        .stat-card .label { color: #666; font-size: 0.9rem; }
+        .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 60px 0; }
+        .table thead th { background: var(--primary); color: white; border: none; }
+        .table-hover tbody tr:hover { background: #e8f0f8; }
+        .badge-tip { font-size: 0.75rem; padding: 4px 8px; border-radius: 20px; }
+        .search-box { border-radius: 25px; padding: 10px 20px; border: 2px solid #ddd; }
+        .search-box:focus { border-color: var(--secondary); box-shadow: none; }
+        footer { background: var(--primary); color: rgba(255,255,255,0.7); padding: 20px 0; margin-top: 60px; }
+    </style>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-person-running me-2"></i>Triatlon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Domov</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Tekmovalci"><i class="fas fa-users me-1"></i>Tekmovalci</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Tekmovanja"><i class="fas fa-flag me-1"></i>Tekmovanja</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Lestvica"><i class="fas fa-trophy me-1"></i>Lestvica</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Filter"><i class="fas fa-filter me-1"></i>Filter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Primerjava"><i class="fas fa-scale-balanced me-1"></i>Primerjava</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    @if (Context.Session.GetString("UporabnikIme") != null)
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link"><i class="fas fa-user me-1"></i>@Context.Session.GetString("UporabnikIme")</span>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/Odjava"><i class="fas fa-sign-out-alt me-1"></i>Odjava</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Prijava"><i class="fas fa-sign-in-alt me-1"></i>Prijava</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Registracija"><i class="fas fa-user-plus me-1"></i>Registracija</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0"><i class="fas fa-person-running me-2"></i>Triatlon Informacijski Sistem &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

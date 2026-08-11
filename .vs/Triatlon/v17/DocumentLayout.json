@@ -1,0 +1,103 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CEE9737C-58D1-4932-84B5-0C6BE705492E}|Naloga3_WPF\\Naloga3_WPF.csproj|c:\\users\\aleks\\source\\repos\\triatlon\\naloga3_wpf\\naloga3_wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CEE9737C-58D1-4932-84B5-0C6BE705492E}|Naloga3_WPF\\Naloga3_WPF.csproj|solutionrelative:naloga3_wpf\\naloga3_wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{489884A3-7F85-08B5-C48A-9E18BD1551A3}|..\\Naloga4_Splet\\Naloga4_Splet\\Naloga4_Splet.csproj|c:\\users\\aleks\\source\\repos\\naloga4_splet\\naloga4_splet\\models\\modeli.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{489884A3-7F85-08B5-C48A-9E18BD1551A3}|..\\Naloga4_Splet\\Naloga4_Splet\\Naloga4_Splet.csproj|c:\\users\\aleks\\source\\repos\\naloga4_splet\\naloga4_splet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEE9737C-58D1-4932-84B5-0C6BE705492E}|Naloga3_WPF\\Naloga3_WPF.csproj|c:\\users\\aleks\\source\\repos\\triatlon\\naloga3_wpf\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEE9737C-58D1-4932-84B5-0C6BE705492E}|Naloga3_WPF\\Naloga3_WPF.csproj|solutionrelative:naloga3_wpf\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEE9737C-58D1-4932-84B5-0C6BE705492E}|Naloga3_WPF\\Naloga3_WPF.csproj|c:\\users\\aleks\\source\\repos\\triatlon\\naloga3_wpf\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEE9737C-58D1-4932-84B5-0C6BE705492E}|Naloga3_WPF\\Naloga3_WPF.csproj|solutionrelative:naloga3_wpf\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Naloga3_WPF.csproj",
+              "DocumentMoniker": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\Naloga3_WPF\\Naloga3_WPF.csproj",
+              "RelativeDocumentMoniker": "Naloga3_WPF\\Naloga3_WPF.csproj",
+              "ToolTip": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\Naloga3_WPF\\Naloga3_WPF.csproj",
+              "RelativeToolTip": "Naloga3_WPF\\Naloga3_WPF.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-31T18:49:01.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Modeli.cs",
+              "DocumentMoniker": "C:\\Users\\Aleks\\source\\repos\\Naloga4_Splet\\Naloga4_Splet\\Models\\Modeli.cs",
+              "RelativeDocumentMoniker": "..\\Naloga4_Splet\\Naloga4_Splet\\Models\\Modeli.cs",
+              "ToolTip": "C:\\Users\\Aleks\\source\\repos\\Naloga4_Splet\\Naloga4_Splet\\Models\\Modeli.cs",
+              "RelativeToolTip": "..\\Naloga4_Splet\\Naloga4_Splet\\Models\\Modeli.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAqwFcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T13:38:22.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Aleks\\source\\repos\\Naloga4_Splet\\Naloga4_Splet\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Naloga4_Splet\\Naloga4_Splet\\Program.cs",
+              "ToolTip": "C:\\Users\\Aleks\\source\\repos\\Naloga4_Splet\\Naloga4_Splet\\Program.cs",
+              "RelativeToolTip": "..\\Naloga4_Splet\\Naloga4_Splet\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T13:31:13.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApiService.cs",
+              "DocumentMoniker": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\Naloga3_WPF\\ApiService.cs",
+              "RelativeDocumentMoniker": "Naloga3_WPF\\ApiService.cs",
+              "ToolTip": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\Naloga3_WPF\\ApiService.cs",
+              "RelativeToolTip": "Naloga3_WPF\\ApiService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBsAAABkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T08:13:19.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\Naloga3_WPF\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "Naloga3_WPF\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\Aleks\\source\\repos\\Triatlon\\Naloga3_WPF\\MainViewModel.cs",
+              "RelativeToolTip": "Naloga3_WPF\\MainViewModel.cs",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAiwPkBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T13:02:48.868Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

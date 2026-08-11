@@ -1,0 +1,90 @@
+@page
+@model Naloga4_Splet.Pages.TekmovalciModel
+@{
+    ViewData["Title"] = "Tekmovalci";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="fas fa-users me-2 text-primary"></i>Iskanje tekmovalcev</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-8">
+                    <input type="text" name="iskanje" value="@Model.Iskanje"
+                           class="form-control search-box"
+                           placeholder="Vnesi ime ali priimek tekmovalca..." />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search me-2"></i>Išči
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <a href="/Tekmovalci" class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-times me-2"></i>Počisti
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Tekmovalci.Any())
+    {
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-list me-2"></i>Rezultati iskanja</span>
+                <span class="badge bg-light text-dark">@Model.Tekmovalci.Count rezultatov</span>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ime</th>
+                            <th>Priimek</th>
+                            <th>Starost</th>
+                            <th>Država</th>
+                            <th>Kraj</th>
+                            <th>Poklic</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var t in Model.Tekmovalci)
+                        {
+                            <tr>
+                                <td class="text-muted small">@t.Id</td>
+                                <td><strong>@t.Ime</strong></td>
+                                <td>@t.Priimek</td>
+                                <td>@(t.Starost?.ToString() ?? "—")</td>
+                                <td><span class="badge bg-secondary">@(t.Drzava ?? "—")</span></td>
+                                <td>@(t.Kraj ?? "—")</td>
+                                <td>@(t.Poklic ?? "—")</td>
+                                <td>
+                                    <a href="/Tekmovalec?id=@t.Id" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye me-1"></i>Podrobnosti
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(Model.Iskanje))
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            Ni rezultatov za iskanje "<strong>@Model.Iskanje</strong>".
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-light border">
+            <i class="fas fa-search me-2 text-primary"></i>
+            Vnesi ime ali priimek tekmovalca za iskanje.
+        </div>
+    }
+</div>

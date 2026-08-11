@@ -1,0 +1,144 @@
+@page
+@model Naloga4_Splet.Pages.IndexModel
+@{
+    ViewData["Title"] = "Domov";
+}
+
+<div class="hero">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3"><i class="fas fa-person-running me-3"></i>Triatlon Informacijski Sistem</h1>
+        <p class="lead mb-4">Iskanje tekmovalcev, lestvice, statistike in primerjave</p>
+        <form method="get" action="/Tekmovalci" class="d-flex justify-content-center gap-2">
+            <input type="text" name="iskanje" class="form-control search-box w-50"
+                   placeholder="🔍 Išči tekmovalca po imenu ali priimku..." />
+            <button type="submit" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-search me-2"></i>Išči
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <!-- STATISTIKE -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="number">@Model.SteviloTekmovalcev.ToString("N0")</div>
+                <div class="label"><i class="fas fa-users me-2 text-primary"></i>Tekmovalcev</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="number">@Model.SteviloTekmovanj</div>
+                <div class="label"><i class="fas fa-flag me-2 text-primary"></i>Tekmovanj</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="number">@Model.SteviloRezultatov.ToString("N0")</div>
+                <div class="label"><i class="fas fa-medal me-2 text-primary"></i>Rezultatov</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ZADNJA TEKMOVANJA -->
+    <div class="row g-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"><i class="fas fa-flag me-2"></i>Zadnja tekmovanja</div>
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Naziv</th>
+                                <th>Lokacija</th>
+                                <th>Tip</th>
+                                <th>Datum</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var t in Model.ZadnjaTekmovanja)
+                            {
+                                <tr>
+                                    <td>@t.Naziv</td>
+                                    <td>@t.Lokacija</td>
+                                    <td>
+                                        <span class="badge bg-primary badge-tip">@t.Tip</span>
+                                    </td>
+                                    <td>@t.Datum?.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        <a href="/Lestvica?tekmovanjeId=@t.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-trophy"></i> Lestvica
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header"><i class="fas fa-chart-pie me-2"></i>Tipi tekmovanj</div>
+                <div class="card-body">
+                    <canvas id="tipChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HITRE POVEZAVE -->
+    <div class="row g-3 mt-4">
+        <div class="col-md-3">
+            <a href="/Tekmovalci" class="card text-decoration-none h-100">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-users fa-2x text-primary mb-3"></i>
+                    <h6 class="card-title">Iskanje tekmovalcev</h6>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Lestvica" class="card text-decoration-none h-100">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-trophy fa-2x text-warning mb-3"></i>
+                    <h6 class="card-title">Lestvice tekmovanj</h6>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Filter" class="card text-decoration-none h-100">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-filter fa-2x text-success mb-3"></i>
+                    <h6 class="card-title">Filtriranje rezultatov</h6>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Primerjava" class="card text-decoration-none h-100">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-scale-balanced fa-2x text-info mb-3"></i>
+                    <h6 class="card-title">Primerjava tekmovalcev</h6>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+const ctx = document.getElementById('tipChart');
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: @Html.Raw(Model.TipLabels),
+        datasets: [{
+            data: @Html.Raw(Model.TipData),
+            backgroundColor: ['#1A3A6B','#2E6DA4','#4A9FD4','#7BC8E8']
+        }]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+});
+</script>
+}
