@@ -8,7 +8,6 @@ administracijska aplikacija (WPF) z namestitvenim programom in spletna aplikacij
 Razvito pri predmetu OZRA na FERI.
 
 ## Arhitektura
-## Arhitektura
 
 ​```mermaid
 flowchart TD
