@@ -9,17 +9,13 @@ Razvito pri predmetu OZRA na FERI.
 
 ## Arhitektura
 
-┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
-│  CSV izvoz  │ ──> │ Uvoz (konz.) │ ──> │  PostgreSQL DB  │
-└─────────────┘     └──────────────┘     └────────┬────────┘
-                                                  │
-                              ┌───────────────────┴─────────────────┐
-                              │                                     │
-                     ┌────────┴────────┐                  ┌─────────┴────────┐
-                     │  Admin (WPF)    │                  │  Splet (Razor)   │
-                     │  + Installer    │                  │                  │
-                     └─────────────────┘                  └──────────────────┘
-
+​```mermaid
+flowchart TD
+    CSV[CSV datoteke] --> Uvoz[Uvoz podatkov - konzola]
+    Uvoz --> DB[(PostgreSQL baza)]
+    DB --> Admin[Admin aplikacija - WPF + Installer]
+    DB --> Splet[Spletna aplikacija - Razor Pages]
+​```
 ## Komponente
 
 ### 1. Uvoz podatkov (konzolna aplikacija)
