@@ -141,7 +141,7 @@ namespace Naloga1_Uvoz
     static class BazaPodatkov
     {
         private static readonly string ConnString =
-            "Host=127.0.0.1;Port=5432;Database=triathlon;Username=postgres;Password=Lejicjesiptar123";
+            "Host=127.0.0.1;Port=5432;Database=triathlon;Username=postgres;Password=Geslo123";
 
         public static void ShraniVse(List<Tekmovanje> vsaTekmovanja)
         {
