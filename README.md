@@ -15,7 +15,7 @@ flowchart TD
     Uvoz --> DB[(PostgreSQL baza)]
     DB --> Admin[Admin aplikacija - WPF + Installer]
     DB --> Splet[Spletna aplikacija - Razor Pages]
-​```
+```
 ## Komponente
 
 ### 1. Uvoz podatkov (konzolna aplikacija)
