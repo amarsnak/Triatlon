@@ -8,13 +8,12 @@ administracijska aplikacija (WPF) z namestitvenim programom in spletna aplikacij
 Razvito pri predmetu OZRA na FERI.
 
 ## Arhitektura
-
-​```mermaid
+```mermaid
 flowchart TD
-    CSV[CSV datoteke] --> Uvoz[Uvoz podatkov - konzola]
+    CSV[CSV datoteke] --> Uvoz[Uvoz podatkov]
     Uvoz --> DB[(PostgreSQL baza)]
-    DB --> Admin[Admin aplikacija - WPF + Installer]
-    DB --> Splet[Spletna aplikacija - Razor Pages]
+    DB --> Admin[Admin WPF + Installer]
+    DB --> Splet[Splet Razor Pages]
 ```
 ## Komponente
 
