@@ -15,8 +15,7 @@ flowchart TD
     Uvoz --> DB[(PostgreSQL baza)]
     DB --> Admin[Admin aplikacija - WPF + Installer]
     DB --> Splet[Spletna aplikacija - Razor Pages]
-```
-
+​```
 ## Komponente
 
 ### 1. Uvoz podatkov (konzolna aplikacija)
@@ -57,6 +56,7 @@ Rezultati vsebujejo delne čase (plavanje, T1, kolesarjenje, T2, tek) in skupni 
 
 ### Uvoz podatkov
 1. Nastavi connection string prek okoljske spremenljivke ali `appsettings.json`
+   (NE zapisuj gesla v kodo)
 2. Nastavi pot do mape z CSV datotekami
 3. Zaženi konzolni projekt
 
